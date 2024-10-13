@@ -6,7 +6,7 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <div class="container mx-auto">
 
-    <div class=" flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row gap-8 place-items-center">
 
       <header class="basis-full md:basis-1/3">
 
@@ -16,15 +16,15 @@ import HelloWorld from './components/HelloWorld.vue'
         </div>
 
         <!--Content: Title-->
-        <div class="basis-full flex items-center">
-          <HelloWorld msg="Coming Soon!"/>
+        <div class="basis-full text-center  pt-4">
+            <h1 class="text-3xl text-green-500">Leaderboards Archive</h1>
         </div>
 
         <!--Nav: General-->
-        <div class="basis-full flex items-center">
-          <nav>
-            <RouterLink to="/">Home</RouterLink>
-            <RouterLink to="/about">About</RouterLink>
+        <div class="basis-full text-center items-center">
+          <nav class="items-center pt-6">
+            <RouterLink to="/" class="m-4">Home</RouterLink>
+            <RouterLink to="/about" class="m-4">About</RouterLink>
           </nav>
         </div>
       </header>
