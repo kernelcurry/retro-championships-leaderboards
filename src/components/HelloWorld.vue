@@ -6,7 +6,7 @@ defineProps<{
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green box-border h-32 w-32 p-4 border-4">{{ msg }}</h1>
     <h3>
       You’ve made it to the Retro Championships leaderboards archive, but unfortunately, it is still a work in progress...
     </h3>
@@ -14,6 +14,10 @@ defineProps<{
 </template>
 
 <style scoped>
+.greetings {
+  width: 100%;
+}
+
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
