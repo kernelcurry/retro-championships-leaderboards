@@ -1,1 +1,0 @@
-import{_ as o,c as t,a as s,o as r}from"./index-CP5v5Tgb.js";const a={},n={class:"about"};function c(_,e){return r(),t("div",n,e[0]||(e[0]=[s("h1",null,"About to be leaderboard for the 2025 Retro Championships.",-1)]))}const i=o(a,[["render",c]]);export{i as default};

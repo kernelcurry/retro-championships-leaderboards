@@ -1,0 +1,1 @@
+import{c as n,a,o as c}from"./index-CYLhCkVG.js";const _=(t,o)=>{const e=t.__vccOpts||t;for(const[r,s]of o)e[r]=s;return e},l={},d={class:"about"};function f(t,o){return c(),n("div",d,o[0]||(o[0]=[a("h1",null,"About to be leaderboard for the 2025 Retro Championships.",-1)]))}const u=_(l,[["render",f]]);export{u as default};
