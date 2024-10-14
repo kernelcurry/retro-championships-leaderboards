@@ -6,13 +6,13 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <div class="container mx-auto">
 
-    <div class="flex flex-col md:flex-row gap-8 place-items-center">
+    <div class="flex flex-col md:flex-row gap-12 place-items-center">
 
-      <header class="basis-full md:basis-1/3">
+      <header class="basis-full 2xl:basis-2/5">
 
         <!--Logo: Retro Championships-->
         <div class="basis-full flex items-center">
-          <img alt="Retro Championships Logo" class="" src="@/assets/img/logo-md.png" width="1920" height="1400"/>
+          <img alt="Retro Championships Logo" class="px-16" src="@/assets/img/logo-md.png" width="1920" height="1400"/>
         </div>
 
         <!--Content: Title-->
@@ -23,13 +23,17 @@ import HelloWorld from './components/HelloWorld.vue'
         <!--Nav: General-->
         <div class="basis-full text-center items-center">
           <nav class="items-center pt-6">
-            <RouterLink to="/" class="m-4">Home</RouterLink>
-            <RouterLink to="/about" class="m-4">About</RouterLink>
+            <RouterLink to="/"
+                        activeClass="underline"
+                        class="m-4 hover:text-white">Home</RouterLink>
+            <RouterLink to="/about"
+                        activeClass="underline"
+                        class="m-4 hover:text-white">About</RouterLink>
           </nav>
         </div>
       </header>
 
-      <div class="basis-full md:basis-2/3">
+      <div class="basis-full 2xl:basis-3/5">
         <RouterView/>
       </div>
 
