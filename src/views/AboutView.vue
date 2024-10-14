@@ -1,15 +1,18 @@
-<template>
-  <div class="about">
-    <h1>About to be leaderboard for the 2025 Retro Championships.</h1>
-  </div>
+<template xmlns="http://www.w3.org/1999/html">
+  <main>
+    <p>
+      This archive catalogs the results and games from each year, offering a clear record of the event's history. From
+      timed laps to high-score battles, it highlights the variety of challenges competitors face. Whether you’re
+      reviewing past tournaments or tracking progress, this resource captures the spirit of each event and celebrates
+      the players who keep retro gaming alive.
+    </p>
+  </main>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+
 </style>
+
+<script setup lang="ts">
+
+</script>

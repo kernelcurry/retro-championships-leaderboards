@@ -6,9 +6,9 @@ import HelloWorld from './components/HelloWorld.vue'
 <template>
   <div class="container mx-auto">
 
-    <div class="flex flex-col md:flex-row gap-12 place-items-center">
+    <div class="flex flex-col xl:flex-row gap-12">
 
-      <header class="basis-full 2xl:basis-2/5">
+      <header class="basis-full xl:basis-2/5 mt-12">
 
         <!--Logo: Retro Championships-->
         <div class="basis-full flex items-center">
@@ -17,7 +17,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
         <!--Content: Title-->
         <div class="basis-full text-center  pt-4">
-            <h1 class="text-3xl text-green-500">Leaderboards Archive</h1>
+            <h1 class="text-3xl  font-bold upper">Leaderboards Archive</h1>
         </div>
 
         <!--Nav: General-->
@@ -33,7 +33,7 @@ import HelloWorld from './components/HelloWorld.vue'
         </div>
       </header>
 
-      <div class="basis-full 2xl:basis-3/5">
+      <div class="basis-full xl:basis-3/5 place-content-center">
         <RouterView/>
       </div>
 
