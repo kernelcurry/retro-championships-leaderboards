@@ -54,18 +54,6 @@ function generateLeaderboardData(useFinals: boolean, numEntries: number) {
   return leaderboardData;
 }
 
-
-
-let scores_finals = [
-  {score: 8, score_head: "1990 NWC", score_sub: 1581600},
-  {score: 8, score_head: "1991 CC", score_sub: 19474000},
-  {score: 7, score_head: "1992 CC", score_sub: 5860450},
-  {score: 8, score_head: "1993 SFSW", score_sub: 151856},
-  {score: 8, score_head: "1994 PF", score_sub: 1581600},
-  {score: 8, score_head: "1995 DKCC", score_sub: 5008},
-  {score: 39}
-];
-
 let leaderboardData = generateLeaderboardData(true,8);
 
 // let leaderboardData = generateLeaderboardData(false,20);
