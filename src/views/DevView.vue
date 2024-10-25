@@ -1,62 +1,35 @@
 <script lang="ts" setup>
 import LeaderboardRow from "@/components/leaderboard/LeaderboardRow.vue";
+import { useLeaderboardsStore } from '@/stores/leaderboards';
 
-function generateLeaderboardData(useFinals: boolean, numEntries: number) {
-  const fakeNames = ["Alice", "Bobby", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack"];  // Example names
-  let leaderboardData = [];
+// Use the leaderboards store
+const leaderboardsStore = useLeaderboardsStore();
 
-  for (let i = 1; i <= numEntries; i++) {
-    // Random name from the fakeNames array
-    const randomName = fakeNames[Math.floor(Math.random() * fakeNames.length)];
+// Getters (state)
+const qualifiers = leaderboardsStore.allQualifiers; // Access qualifiers
+const finals = leaderboardsStore.allFinals;         // Access finals
 
-    let scores;
-    let totalScore;
-    if (useFinals) {
-      // Generate finals scores
-      scores = [
-        { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
-        { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) },
-        { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) },
-        { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) },
-        { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) },
-        { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) }
-      ];
+// Fetch methods (actions)
+const fetchBoth = async () => {
+  await leaderboardsStore.fetchScoresFromAPI({ fetchQualifiers: true, fetchFinals: true });
+};
 
-      // Calculate the sum of all score_sub values
-      totalScore = scores.reduce((total, game) => total + (game.score || 0), 0);
+const fetchQualifiers = async () => {
+  await leaderboardsStore.fetchScoresFromAPI({ fetchQualifiers: true });
+};
 
-      // Add the final score object with the total sum
-      scores.push({ score: totalScore });
-    } else {
-      // Generate quals scores (single score)
-      scores = [{ score: Math.floor(Math.random() * 2000000) }];
+const fetchFinals = async () => {
+  await leaderboardsStore.fetchScoresFromAPI({ fetchFinals: true });
+};
 
-      // The single score is the total score for quals
-      totalScore = scores[0].score;
-    }
+// Reset leaderboard
+const resetLeaderboard = () => {
+  leaderboardsStore.resetScores();
+};
 
-    leaderboardData.push({
-      name: randomName,
-      scores,
-      totalScore  // Keep track of the total score for sorting
-    });
-  }
 
-  // Sort the leaderboard by totalScore in descending order
-  leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
+let leaderboardData = leaderboardsStore.generateTestData(10);
 
-  // Assign the place based on sorted totalScore
-  leaderboardData = leaderboardData.map((entry, index) => ({
-    ...entry,
-    place: index + 1  // The index + 1 gives the correct place (1st, 2nd, etc.)
-  }));
-
-  return leaderboardData;
-}
-
-let leaderboardData = generateLeaderboardData(true,8);
-
-// let leaderboardData = generateLeaderboardData(false,20);
 </script>
 
 <template>
@@ -65,7 +38,7 @@ let leaderboardData = generateLeaderboardData(true,8);
       <div class="space-y-4">
 
         <LeaderboardRow
-          v-for="(item, index) in leaderboardData"
+          v-for="(item, index) in leaderboardsStore.allFinals"
           :key="index"
           :name="item.name"
           :place="item.place"
