@@ -62,21 +62,31 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Generate and populate test data for both qualifiers and finals
     generateTestData(numEntries: number) {
-      const fakeNames = ["Alice", "Bobby", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack"];
+      // List of unique names (both real names and gamer tags)
+      const uniqueNames = [
+        "Alice", "Bobby", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack",
+        "ShadowHunter", "GhostWolf", "NinjaKitty", "DragonSlayer", "PixelMaster", "Xx_DarkLord_xX",
+        "MysticMage", "CyberPunk", "ZeldaFan", "MarioBro", "PrincessPeach", "PugLife", "KnightRider",
+        "GalacticWanderer", "SkyWarrior"
+      ];
+
+      // Shuffle names to ensure a random order each time
+      const shuffledNames = uniqueNames.sort(() => Math.random() - 0.5);
+      const maxEntries = Math.min(numEntries, shuffledNames.length);
 
       // Helper function to generate scores for finals or qualifiers
-      const generateScores = (useFinals: boolean) => {
+      const generateScores = (useFinals: boolean): Score[] => {
         if (useFinals) {
-          const scores = [
-            { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
-            { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
-            { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
-            { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) } as Score,
-            { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) } as Score,
-            { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) } as Score
+          const scores: Score[] = [
+           // { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) }
           ];
-          const totalScore = scores.reduce((total, game) => total + (Number(game.score_sub) || 0), 0);
-          scores.push({ score: totalScore } as Score);
+          const totalScore = scores.reduce((total, game) => total + (game.score || 0), 0);
+          scores.push({ score: totalScore });
           return scores;
         } else {
           const scoreValue = Math.floor(Math.random() * 2000000);
@@ -86,35 +96,34 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
       // Generate leaderboard entries and add rows
       const generateLeaderboardRows = (useFinals: boolean) => {
-        let leaderboardData = [];
-        for (let i = 1; i <= numEntries; i++) {
-          const randomName = fakeNames[Math.floor(Math.random() * fakeNames.length)];
+        const leaderboardData = [];
+        for (let i = 0; i < maxEntries; i++) {
+          const name = shuffledNames[i];
           const scores = generateScores(useFinals);
-          const totalScore = useFinals
-            ? scores[scores.length - 1].score
-            : scores[0].score;
+          const totalScore = useFinals ? scores[scores.length - 1].score : scores[0].score;
 
           leaderboardData.push({
-            name: randomName,
+            name,
             scores,
             totalScore
           });
         }
 
-        // Sort the leaderboard by totalScore in descending order and assign places
-        leaderboardData.sort((a, b) => Number(b.totalScore) - Number(a.totalScore));
+        // Sort by totalScore in descending order and assign places
+        leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
         leaderboardData.forEach((entry, index) => {
           const place = index + 1;
           if (useFinals) {
-            this.addFinalsRow(place, entry.name, entry.scores);
+            this.leaderboards.finals.push({ place, name: entry.name, scores: entry.scores });
           } else {
-            this.addQualifierRow(place, entry.name, entry.scores);
+            this.leaderboards.qualifiers.push({ place, name: entry.name, scores: entry.scores });
           }
         });
       };
 
-      // Reset the current data and populate qualifiers and finals with test data
-      this.resetScores();
+      // Reset current data and populate qualifiers and finals with test data
+      this.leaderboards.qualifiers = [];
+      this.leaderboards.finals = [];
       generateLeaderboardRows(false); // Populate qualifiers
       generateLeaderboardRows(true);  // Populate finals
     },
