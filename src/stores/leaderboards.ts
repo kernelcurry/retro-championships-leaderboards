@@ -68,15 +68,15 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
       const generateScores = (useFinals: boolean) => {
         if (useFinals) {
           const scores = [
-            { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) }
+            { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
+            { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
+            { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) } as Score,
+            { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) } as Score,
+            { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) } as Score,
+            { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) } as Score
           ];
-          const totalScore = scores.reduce((total, game) => total + (game.score_sub || 0), 0);
-          scores.push({ score: totalScore });
+          const totalScore = scores.reduce((total, game) => total + (Number(game.score_sub) || 0), 0);
+          scores.push({ score: totalScore } as Score);
           return scores;
         } else {
           const scoreValue = Math.floor(Math.random() * 2000000);
@@ -102,7 +102,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         }
 
         // Sort the leaderboard by totalScore in descending order and assign places
-        leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
+        leaderboardData.sort((a, b) => Number(b.totalScore) - Number(a.totalScore));
         leaderboardData.forEach((entry, index) => {
           const place = index + 1;
           if (useFinals) {
