@@ -85,7 +85,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
             { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) },
             { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) }
           ];
-          const totalScore = scores.reduce((total, game) => total + (game.score || 0), 0);
+          const totalScore = scores.reduce((total, game) => total + (Number(game.score) || 0), 0);
           scores.push({ score: totalScore });
           return scores;
         } else {
@@ -110,7 +110,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         }
 
         // Sort by totalScore in descending order and assign places
-        leaderboardData.sort((a, b) => b.totalScore - a.totalScore);
+        leaderboardData.sort((a, b) => Number(b.totalScore) - Number(a.totalScore));
         leaderboardData.forEach((entry, index) => {
           const place = index + 1;
           if (useFinals) {
