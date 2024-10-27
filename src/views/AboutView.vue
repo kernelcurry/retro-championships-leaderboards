@@ -1,5 +1,5 @@
 <template xmlns="http://www.w3.org/1999/html">
-  <main>
+  <main class="my-12">
     <p>
       This archive catalogs the results and games from each year, offering a clear record of the event's history. From
       timed laps to high-score battles, it highlights the variety of challenges competitors face. Whether you’re

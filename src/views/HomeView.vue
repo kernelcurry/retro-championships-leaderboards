@@ -3,7 +3,7 @@ import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
-  <main>
+  <main class="my-12">
     <!--    <TheWelcome />-->
     <ol class="relative border-s border-gray-200 dark:border-gray-700">
 
