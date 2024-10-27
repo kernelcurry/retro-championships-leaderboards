@@ -2,6 +2,7 @@ import {createRouter, createWebHistory} from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import BasicLayout from "@/layouts/BasicLayout.vue";
 import DevView from "@/views/DevView.vue";
+import FinalsView from "@/views/FinalsView.vue";
 import BlankLayout from "@/layouts/BlankLayout.vue";
 
 const router = createRouter({
@@ -27,6 +28,12 @@ const router = createRouter({
       name: 'dev',
       meta: {layout: BlankLayout},
       component: DevView
+    },
+    {
+      path: '/finals',
+      name: 'finals',
+      meta: {layout: BlankLayout},
+      component: FinalsView
     },
   ]
 })
