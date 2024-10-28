@@ -6,8 +6,7 @@ import FinalsView from "@/views/FinalsView.vue";
 import BlankLayout from "@/layouts/BlankLayout.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  mode : 'hash',
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
