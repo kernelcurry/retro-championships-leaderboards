@@ -107,7 +107,7 @@ const pedestalStyle = computed(() => {
         <div class="flex items-center gap-2 bg-red-300"></div>
       </div>
     </div>
-    <div class="flex gap-4 flex-row-reverse">
+    <div class="flex gap-4 flex-row">
       <LeaderboardRowScore
         v-for="(score, index) in props.scores"
         :key="'score-' + index"
