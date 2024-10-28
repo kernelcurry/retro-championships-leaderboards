@@ -76,15 +76,15 @@ const pedestalStyle = computed(() => {
       {{ name }}
       <div class="flex items-center gap-2"></div>
     </div>
-    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">
-      <div>{{ scores[0].score }}</div>
-    </div>
+<!--    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">-->
+<!--      <div>{{ scores[0].score }}</div>-->
+<!--    </div>-->
 
     <div class="w-full flex justify-center items-start text-3xl"
          :class="pedestalStyle">
-      <div class="grid grid-flow-row xl:grid-cols-5 grid-cols-3 grid-rows-2 gap-2 p-4">
+      <div class="grid grid-flow-row xl:grid-cols-6 grid-cols-3 grid-rows-1 gap-2 p-4">
         <LeaderboardRowScore
-          v-for="(score, index) in scores.slice(1)"
+          v-for="(score, index) in scores"
           :key="'score-pedestal-' + (index + 1)"
           :score="score.score"
           :score_head="score.score_head"
