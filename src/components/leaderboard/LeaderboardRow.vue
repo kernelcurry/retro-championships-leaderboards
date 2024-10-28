@@ -85,7 +85,7 @@ const pedestalStyle = computed(() => {
       <div class="grid grid-flow-row xl:grid-cols-5 grid-cols-3 grid-rows-2 gap-2 p-4">
         <LeaderboardRowScore
           v-for="(score, index) in scores.slice(1).reverse()"
-          :key="index + 1"
+          :key="'score-pedestal-' + (index + 1)"
           :score="score.score"
           :score_head="score.score_head"
           :score_sub="score.score_sub"
@@ -110,7 +110,7 @@ const pedestalStyle = computed(() => {
     <div class="flex gap-4 flex-row-reverse">
       <LeaderboardRowScore
         v-for="(score, index) in props.scores"
-        :key="index"
+        :key="'score-' + index"
         :score="score.score"
         :score_head="score.score_head"
         :score_sub="score.score_sub"
