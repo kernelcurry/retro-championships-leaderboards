@@ -84,7 +84,7 @@ const pedestalStyle = computed(() => {
          :class="pedestalStyle">
       <div class="grid grid-flow-row xl:grid-cols-5 grid-cols-3 grid-rows-2 gap-2 p-4">
         <LeaderboardRowScore
-          v-for="(score, index) in scores.slice(1).reverse()"
+          v-for="(score, index) in scores.slice(1)"
           :key="'score-pedestal-' + (index + 1)"
           :score="score.score"
           :score_head="score.score_head"
