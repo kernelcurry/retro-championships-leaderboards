@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { computed } from 'vue';
 import LeaderboardRow from "@/components/leaderboard/LeaderboardRow.vue";
 import {useLeaderboardsStore} from '@/stores/leaderboards';
 import LeaderboardRowScore from "@/components/leaderboard/LeaderboardRowScore.vue";
@@ -28,8 +29,15 @@ const resetLeaderboard = () => {
   leaderboardsStore.resetScores();
 };
 
-
+// Test data generation
 let leaderboardData = leaderboardsStore.generateTestData(8);
+
+// Computed properties for sliced data
+const pedestalLeft = computed(() => leaderboardsStore.allFinals.slice(1, 2));
+const pedestalCenter = computed(() => leaderboardsStore.allFinals.slice(0, 1));
+const pedestalRight = computed(() => leaderboardsStore.allFinals.slice(2, 3));
+const topThreeRows = computed(() => leaderboardsStore.allFinals.slice(0, 3));
+const remainingRows = computed(() => leaderboardsStore.allFinals.slice(3));
 
 </script>
 
@@ -37,7 +45,7 @@ let leaderboardData = leaderboardsStore.generateTestData(8);
   <div class="max-w-screen-2xl mx-auto">
     <div class="hidden xl:grid grid-cols-3 gap-1 justify-end items-end">
       <LeaderboardRow
-        v-for="(item, index) in leaderboardsStore.allFinals.slice(1, 2)"
+        v-for="(item, index) in pedestalLeft"
         :key="'pedestal-' + item.place"
         :name="item.name"
         :place="item.place"
@@ -46,7 +54,7 @@ let leaderboardData = leaderboardsStore.generateTestData(8);
         :is-pedestal="true"
       />
       <LeaderboardRow
-        v-for="(item, index) in leaderboardsStore.allFinals.slice(0, 1)"
+        v-for="(item, index) in pedestalCenter"
         :key="'pedestal-' + item.place"
         :name="item.name"
         :place="item.place"
@@ -55,7 +63,7 @@ let leaderboardData = leaderboardsStore.generateTestData(8);
         :is-pedestal="true"
       />
       <LeaderboardRow
-        v-for="(item, index) in leaderboardsStore.allFinals.slice(2, 3)"
+        v-for="(item, index) in pedestalRight"
         :key="'pedestal-' + item.place"
         :name="item.name"
         :place="item.place"
@@ -65,20 +73,19 @@ let leaderboardData = leaderboardsStore.generateTestData(8);
       />
     </div>
 
-    <div class="xl:hidden space-y-4 mb-4">
+    <div class="space-y-4">
+
       <LeaderboardRow
-        v-for="(item, index) in leaderboardsStore.allFinals.slice(0,3)"
+        v-for="(item, index) in topThreeRows"
         :key="'row-' + item.place"
         :name="item.name"
         :place="item.place"
         :scores="item.scores"
         :use-place-styles="true"
       />
-    </div>
 
-    <div class="space-y-4">
       <LeaderboardRow
-        v-for="(item, index) in leaderboardsStore.allFinals.slice(3)"
+        v-for="(item, index) in remainingRows"
         :key="'row-' + item.place"
         :name="item.name"
         :place="item.place"

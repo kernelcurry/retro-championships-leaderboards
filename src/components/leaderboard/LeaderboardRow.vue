@@ -69,6 +69,8 @@ const pedestalStyle = computed(() => {
 
 
 <template>
+
+  <div v-bind="$attrs" class="root-element-class">
   <!-- Pedestal -->
   <div v-if="isPedestal" class="flex flex-col items-center">
 
@@ -85,7 +87,7 @@ const pedestalStyle = computed(() => {
       <div class="grid grid-flow-row xl:grid-cols-6 grid-cols-3 grid-rows-1 gap-2 p-4">
         <LeaderboardRowScore
           v-for="(score, index) in scores"
-          :key="'score-pedestal-' + (index + 1)"
+          :key="place + '-score-pedestal-' + (index + 1)"
           :score="score.score"
           :score_head="score.score_head"
           :score_sub="score.score_sub"
@@ -110,12 +112,13 @@ const pedestalStyle = computed(() => {
     <div class="flex gap-4 flex-row">
       <LeaderboardRowScore
         v-for="(score, index) in props.scores"
-        :key="'score-' + index"
+        :key="place + '-score-' + index"
         :score="score.score"
         :score_head="score.score_head"
         :score_sub="score.score_sub"
       ></LeaderboardRowScore>
     </div>
+  </div>
   </div>
 </template>
 
