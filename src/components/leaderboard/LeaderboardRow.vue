@@ -2,6 +2,10 @@
 import { computed, withDefaults } from 'vue';
 import LeaderboardRowScore from "@/components/leaderboard/LeaderboardRowScore.vue";
 
+import pedestalGold from '@/assets/img/pedestal-gold.png';
+import pedestalSilver from '@/assets/img/pedestal-silver.png';
+import pedestalBronze from '@/assets/img/pedestal-bronze.png';
+
 interface Score {
   score: string | number,
   score_head?: string | number,
@@ -43,27 +47,35 @@ const placeStyle = computed(() => {
   return placeStyles[numericPlace - 1] || placeStylesFallback;
 });
 
-// Define place styles and fallback
-const pedestalStyles = [
+// Define place classes and fallback
+const pedestalClasses = [
   "h-60 bg-gradient-to-b rounded-t-xl border-slate-700 from-yellow-500/60",  // 1st place
   "h-44 bg-gradient-to-b rounded-tl-xl border-slate-700 from-gray-400",      // 2nd place
   "h-28 bg-gradient-to-b rounded-tr-xl border-slate-700 from-orange-400/40"   // 3rd place
 ];
-const pedestalStylesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 from-gray-600";
+const pedestalClassesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 from-gray-600";
 
 // Computed property to determine the correct style based on place and usePlaceStyles
-const pedestalStyle = computed(() => {
+const pedestalClass = computed(() => {
   // If usePlaceStyles is false, always return the fallback
-  if (!props.usePlaceStyles) return pedestalStylesFallback;
+  if (!props.usePlaceStyles) return pedestalClassesFallback;
 
   // Try to convert place to a number
   const numericPlace = Number(props.place);
 
   // Use fallback if place cannot be parsed into a valid number (isNaN)
-  if (isNaN(numericPlace)) return pedestalStylesFallback;
+  if (isNaN(numericPlace)) return pedestalClassesFallback;
 
   // Return style for 1st, 2nd, or 3rd place; otherwise, fallback
-  return pedestalStyles[numericPlace - 1] || pedestalStylesFallback;
+  return pedestalClasses[numericPlace - 1] || pedestalClassesFallback;
+});
+
+// Determine which image to use based on place
+const pedestalImage = computed(() => {
+  if (props.place === 1) return pedestalGold;
+  if (props.place === 2) return pedestalSilver;
+  if (props.place === 3) return pedestalBronze;
+  return null; // Fallback or default image, if any
 });
 </script>
 
@@ -83,7 +95,14 @@ const pedestalStyle = computed(() => {
 <!--    </div>-->
 
     <div class="w-full flex justify-center items-start text-3xl"
-         :class="pedestalStyle">
+         :class="pedestalClass"
+         :style="{
+          'background-image': pedestalImage ? `url('${pedestalImage}')` : '',
+          'image-rendering': 'pixelated',
+          'background-size': 'cover',
+          'background-position': 'top',
+          'background-repeat': 'no-repeat',
+         }">
       <div class="grid grid-flow-row xl:grid-cols-6 grid-cols-3 grid-rows-1 gap-2 p-4">
         <LeaderboardRowScore
           v-for="(score, index) in scores"
