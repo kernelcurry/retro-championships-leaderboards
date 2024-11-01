@@ -5,6 +5,7 @@ import LeaderboardRowScore from "@/components/leaderboard/LeaderboardRowScore.vu
 import pedestalGold from '@/assets/img/pedestal-gold.png';
 import pedestalSilver from '@/assets/img/pedestal-silver.png';
 import pedestalBronze from '@/assets/img/pedestal-bronze.png';
+import tileRock from '@/assets/img/tile-rock.png';
 
 interface Score {
   score: string | number,
@@ -77,6 +78,14 @@ const pedestalImage = computed(() => {
   if (props.place === 3) return pedestalBronze;
   return null; // Fallback or default image, if any
 });
+
+// Compute the background image URL based on place
+const placeClass = computed(() => {
+  if (props.place === 1) return 'pedestal-gold';
+  if (props.place === 2) return 'pedestal-silver';
+  if (props.place === 3) return 'pedestal-bronze';
+  return '';
+});
 </script>
 
 
@@ -94,15 +103,7 @@ const pedestalImage = computed(() => {
 <!--      <div>{{ scores[0].score }}</div>-->
 <!--    </div>-->
 
-    <div class="w-full flex justify-center items-start text-3xl"
-         :class="pedestalClass"
-         :style="{
-          'background-image': pedestalImage ? `url('${pedestalImage}')` : '',
-          'image-rendering': 'pixelated',
-          'background-size': 'cover',
-          'background-position': 'top',
-          'background-repeat': 'no-repeat',
-         }">
+    <div class="w-full flex justify-center items-start text-3xl" :class="['pedestal', placeClass, pedestalClass]">
       <div class="grid grid-flow-row xl:grid-cols-6 grid-cols-3 grid-rows-1 gap-2 p-4">
         <LeaderboardRowScore
           v-for="(score, index) in scores"
@@ -142,5 +143,43 @@ const pedestalImage = computed(() => {
 </template>
 
 <style scoped>
+.pedestal {
+  position: relative;
+  overflow: hidden;
+  //width: 100%;
+  //height: 100%;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  z-index: 2; /* Ensures that the content appears above the ::before element */
+}
 
+/* The ::before pseudo-element for the background image */
+.pedestal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  //background-size: contain;
+  //background-position: center;
+  //background-repeat: no-repeat;
+  opacity: 0.4; /* Adjust the opacity of the background image here */
+  z-index: 1; /* Ensures the background is behind the content */
+  pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
+}
+
+/* Specific classes for each place */
+.pedestal-gold::before {
+  background-image: url('@/assets/img/pedestal-gold.png');
+}
+
+.pedestal-silver::before {
+  background-image: url('@/assets/img/pedestal-silver.png');
+}
+
+.pedestal-bronze::before {
+  background-image: url('@/assets/img/tile-rock.png');
+}
 </style>
