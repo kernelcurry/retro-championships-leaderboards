@@ -172,14 +172,17 @@ const placeClass = computed(() => {
 
 /* Specific classes for each place */
 .pedestal-gold::before {
-  background-image: url('@/assets/img/pedestal-gold.png');
+  background-image: url('@/assets/img/tile-rock.png');
+  background-size: 32px 32px;
 }
 
 .pedestal-silver::before {
-  background-image: url('@/assets/img/pedestal-silver.png');
+  background-image: url('@/assets/img/tile-rock.png');
+  background-size: 48px 48px;
 }
 
 .pedestal-bronze::before {
   background-image: url('@/assets/img/tile-rock.png');
+  background-size: 60px 60px;
 }
 </style>
