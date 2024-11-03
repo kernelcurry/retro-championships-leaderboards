@@ -50,11 +50,11 @@ const placeStyle = computed(() => {
 
 // Define place classes and fallback
 const pedestalClasses = [
-  "h-60 bg-gradient-to-b rounded-t-xl border-slate-700 from-yellow-500/60",  // 1st place
-  "h-44 bg-gradient-to-b rounded-tl-xl border-slate-700 from-gray-400",      // 2nd place
-  "h-28 bg-gradient-to-b rounded-tr-xl border-slate-700 from-orange-400/40"   // 3rd place
+  "h-60 bg-gradient-to-b rounded-t-xl border-yellow-400 border-2 from-yellow-500/60",  // 1st place
+  "h-44 bg-gradient-to-b rounded-tl-xl border-gray-100 border-2 from-gray-400",      // 2nd place
+  "h-28 bg-gradient-to-b rounded-tr-xl border-orange-400 border-2 from-orange-400/40"   // 3rd place
 ];
-const pedestalClassesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 from-gray-600";
+const pedestalClassesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 border-2 from-gray-600";
 
 // Computed property to determine the correct style based on place and usePlaceStyles
 const pedestalClass = computed(() => {
