@@ -23,28 +23,25 @@ const formatNumber = (value: string | number) => {
 </script>
 
 <template>
-  <div class="flex place-content-center">
-    <!-- Left side: score_head at top and score_sub at bottom -->
-    <div v-if="score_head || score_sub" class="flex flex-col justify-between w-3/5">
-      <span v-if="score_head" class="text-xl border-b-2 border-r-2 text-center h-full">
-        {{formatNumber(score_head) }}
-      </span>
-      <span v-if="score_sub" class="text-lg border-r-2 text-center h-full">
-        {{ formatNumber(score_sub) }}
-      </span>
-    </div>
+  <div class="flex items-center justify-center">
+    <!-- Head section, right-aligned to be close to the score -->
+    <span v-if="score_head" class="text-lg w-7/12 text-right bg-slate-500 bg-opacity-35 pr-2 border-t-2 border-b-2 border-l-2 rounded-l-full">
+      {{ formatNumber(score_head) }}
+    </span>
 
-    <!-- Right side: Main score, spans entire right side vertically -->
-    <div class="flex items-center justify-center w-2/5 relative">
-      <span
-        class="absolute top-0 left-0 aspect-square h-full flex items-center justify-center text-center bg-slate-600"
-        :class="score_sub && score_head ? 'text-3xl' : 'text-4xl'"
-        style="clip-path: polygon(0 0, 100% 0, 100% 20%, 80% 50%, 100% 80%, 100% 100%, 0 100%); /* Ticket */">
-        {{ formatNumber(score) }}
-      </span>
-    </div>
+    <!-- Main score section, centered and twice as large -->
+    <span class="font-bold text-center content-center bg-slate-800 bg-opacity-80 aspect-square h-full border-2 rounded-xl"
+          :class="(score_sub && score_head ? 'text-4xl' : 'text-4xl')">
+      {{ formatNumber(score) }}
+    </span>
+
+    <!-- Sub section, left-aligned to be close to the score -->
+    <span v-if="score_sub" class="text-lg flex-grow text-left bg-slate-500 bg-opacity-35 pl-2 border-t-2 border-b-2 border-r-2 rounded-r-full">
+      {{ formatNumber(score_sub) }}
+    </span>
   </div>
 </template>
+
 
 
 <style scoped>

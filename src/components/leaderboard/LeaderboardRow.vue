@@ -104,7 +104,7 @@ const placeClass = computed(() => {
 <!--    </div>-->
 
     <div class="w-full flex justify-center items-start text-3xl" :class="['pedestal', placeClass, pedestalClass]">
-      <div class="grid grid-flow-row xl:grid-cols-6 grid-cols-3 grid-rows-1 gap-2 p-4">
+      <div class="fled flex-col gap-2 w-[98%]">
         <LeaderboardRowScore
           v-for="(score, index) in scores"
           :key="place + '-score-pedestal-' + (index + 1)"
@@ -122,14 +122,15 @@ const placeClass = computed(() => {
     :class="placeStyle"
     v-if="!isPedestal"
   >
-    <div class="flex gap-4 w-1/4 items-center">
-      <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
-      <div class="flex items-center gap-3 font-semibold text-2xl">
-        {{ name }}
-        <div class="flex items-center gap-2 bg-red-300"></div>
+
+    <div class="grid grid-cols-3 grid-rows-2 gap-2 w-full">
+      <div class="flex gap-4 items-center">
+        <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
+        <div class="flex items-center gap-3 font-semibold text-2xl">
+          {{ name }}
+          <div class="flex items-center gap-2 bg-red-300"></div>
+        </div>
       </div>
-    </div>
-    <div class="grid grid-cols-3 grid-rows-2 gap-4 w-3/4">
       <LeaderboardRowScore
         v-for="(score, index) in props.scores"
         :key="place + '-score-' + index"
