@@ -79,11 +79,11 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         if (useFinals) {
           const scores: Score[] = [
            // { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1991 CC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1992 CC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1993 SFSW", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1994 PF", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "1995 DKCC", score_sub: Math.floor(Math.random() * 2000000) }
+            { score: Math.floor(Math.random() * 10), score_head: "Campus Challenge '91", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "Campus Challenge '92", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "Star Fox: Super Weekend '93", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "PowerFest '94", score_sub: Math.floor(Math.random() * 2000000) },
+            { score: Math.floor(Math.random() * 10), score_head: "Donkey Kong Country Competition '95", score_sub: Math.floor(Math.random() * 2000000) }
           ];
           const totalScore = scores.reduce((total, game) => total + (Number(game.score) || 0), 0);
           scores.push({ score: totalScore });

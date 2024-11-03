@@ -122,14 +122,14 @@ const placeClass = computed(() => {
     :class="placeStyle"
     v-if="!isPedestal"
   >
-    <div class="flex gap-4 flex-grow items-center">
+    <div class="flex gap-4 w-1/4 items-center">
       <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
       <div class="flex items-center gap-3 font-semibold text-2xl">
         {{ name }}
         <div class="flex items-center gap-2 bg-red-300"></div>
       </div>
     </div>
-    <div class="flex gap-4 flex-row">
+    <div class="grid grid-cols-3 grid-rows-2 gap-4 w-3/4">
       <LeaderboardRowScore
         v-for="(score, index) in props.scores"
         :key="place + '-score-' + index"
