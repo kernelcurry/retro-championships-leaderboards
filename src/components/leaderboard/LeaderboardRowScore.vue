@@ -31,7 +31,7 @@ const formatNumber = (value: string | number) => {
 
     <!-- Main score section, centered and twice as large -->
     <!-- With Head OR Sub -->
-    <span v-if="score_sub || score_head" class="font-bold text-center content-center bg-slate-800 bg-opacity-100 aspect-square w-10 border-2 rounded-lg text-2xl">
+    <span v-if="score_sub || score_head" class="font-bold text-center content-center bg-slate-800 bg-opacity-75 aspect-square w-10 border-2 rounded-lg text-2xl">
       {{ formatNumber(score) }}
     </span>
 
