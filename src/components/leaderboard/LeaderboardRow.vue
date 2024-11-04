@@ -203,11 +203,6 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
 .pedestal {
   position: relative;
   overflow: hidden;
-  //width: 100%;
-  //height: 100%;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
   z-index: 1; /* Ensures that the content appears above the ::before element */
 }
 
@@ -219,9 +214,6 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
   left: 0;
   width: 100%;
   height: 100%;
-  //background-size: contain;
-  //background-position: center;
-  //background-repeat: no-repeat;
   opacity: 0.1; /* Adjust the opacity of the background image here */
   z-index: -10; /* Ensures the background is behind the content */
   pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
@@ -246,11 +238,6 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
 .score-row {
   position: relative;
   overflow: hidden;
-  //width: 100%;
-  //height: 100%;
-  //display: flex;
-  //align-items: center;
-  //justify-content: center;
   z-index: 1; /* Ensures that the content appears above the ::before element */
 }
 
@@ -262,9 +249,6 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
   left: 0;
   width: 100%;
   height: 100%;
-  //background-size: contain;
-  //background-position: center;
-  //background-repeat: no-repeat;
   opacity: 0.1; /* Adjust the opacity of the background image here */
   z-index: -10; /* Ensures the background is behind the content */
   pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
