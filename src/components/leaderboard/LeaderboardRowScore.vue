@@ -25,23 +25,23 @@ const formatNumber = (value: string | number) => {
 <template>
   <div class="flex items-center justify-center">
     <!-- Head section, right-aligned to be close to the score -->
-    <span v-if="score_head" class="text-lg w-7/12 text-right bg-slate-800 bg-opacity-60 pr-2 border-t-2 border-b-2 border-l-2 rounded-l-full text-nowrap overflow-hidden">
+    <span v-if="score_head" class="text-base w-7/12 text-right bg-slate-800 bg-opacity-60 pr-2 border-t-2 border-b-2 border-l-2 rounded-l-full text-nowrap overflow-hidden">
       {{ formatNumber(score_head) }}
     </span>
 
     <!-- Main score section, centered and twice as large -->
     <!-- With Head OR Sub -->
-    <span v-if="score_sub || score_head" class="font-bold text-center content-center bg-slate-800 bg-opacity-100 aspect-square w-12 border-2 rounded-xl text-4xl">
+    <span v-if="score_sub || score_head" class="font-bold text-center content-center bg-slate-800 bg-opacity-100 aspect-square w-10 border-2 rounded-lg text-2xl">
       {{ formatNumber(score) }}
     </span>
 
     <!-- Without Head OR Sub -->
-    <span v-if="!score_sub && !score_head" class="font-bold text-center content-center text-6xl">
+    <span v-if="!score_sub && !score_head" class="font-bold text-center content-center text-5xl">
       {{ formatNumber(score) }}
     </span>
 
     <!-- Sub section, left-aligned to be close to the score -->
-    <span v-if="score_sub" class="text-lg flex-grow text-left bg-slate-800 bg-opacity-60 pl-2 border-t-2 border-b-2 border-r-2 rounded-r-full">
+    <span v-if="score_sub" class="text-base flex-grow text-left bg-slate-800 bg-opacity-60 pl-2 border-t-2 border-b-2 border-r-2 rounded-r-full">
       {{ formatNumber(score_sub) }}
     </span>
   </div>
