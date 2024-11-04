@@ -50,6 +50,7 @@ const rightColumnRows = computed(() => leaderboardsStore.allFinals.filter((_, in
       :place="item.place"
       :scores="item.scores"
       :use-place-styles="true"
+      :class="hidden"
     />
 
     <LeaderboardRow

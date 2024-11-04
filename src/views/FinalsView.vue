@@ -43,7 +43,7 @@ const remainingRows = computed(() => leaderboardsStore.allFinals.slice(3));
 
 <template>
   <div class="max-w-screen-2xl mx-auto">
-    <div class="hidden xl:grid grid-cols-3 gap-1 justify-end items-end">
+    <div class="hidden 2xl:grid grid-cols-3 gap-1 justify-end items-end">
       <LeaderboardRow
         v-for="(item, index) in pedestalLeft"
         :key="'pedestal-' + item.place"
@@ -82,6 +82,7 @@ const remainingRows = computed(() => leaderboardsStore.allFinals.slice(3));
         :place="item.place"
         :scores="item.scores"
         :use-place-styles="true"
+        :class="['2xl:hidden']"
       />
 
       <LeaderboardRow

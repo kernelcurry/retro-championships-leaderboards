@@ -1,11 +1,14 @@
 <script lang="ts" setup>
-import { computed, withDefaults } from 'vue';
+import {computed, withDefaults} from 'vue';
 import LeaderboardRowScore from "@/components/leaderboard/LeaderboardRowScore.vue";
 
 import pedestalGold from '@/assets/img/pedestal-gold.png';
 import pedestalSilver from '@/assets/img/pedestal-silver.png';
 import pedestalBronze from '@/assets/img/pedestal-bronze.png';
 import tileRock from '@/assets/img/tile-rock.png';
+import trophyGold from '@/assets/img/trophy-gold.png';
+import trophySilver from '@/assets/img/trophy-silver.png';
+import trophyBronze from '@/assets/img/trophy-bronze.png';
 
 interface Score {
   score: string | number,
@@ -50,9 +53,9 @@ const placeStyle = computed(() => {
 
 // Define place classes and fallback
 const pedestalClasses = [
-  "h-60 bg-gradient-to-b rounded-t-xl border-yellow-400 border-2 from-yellow-500/60",  // 1st place
-  "h-44 bg-gradient-to-b rounded-tl-xl border-gray-100 border-2 from-gray-400",      // 2nd place
-  "h-28 bg-gradient-to-b rounded-tr-xl border-orange-400 border-2 from-orange-400/40"   // 3rd place
+  "h-[464px] bg-gradient-to-b rounded-t-xl border-yellow-400 border-2 from-yellow-500/60",  // 1st place
+  "h-[400px] bg-gradient-to-b rounded-tl-xl border-gray-100 border-2 from-gray-400",      // 2nd place
+  "h-[336px] bg-gradient-to-b rounded-tr-xl border-orange-400 border-2 from-orange-400/40"   // 3rd place
 ];
 const pedestalClassesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 border-2 from-gray-600";
 
@@ -79,6 +82,21 @@ const pedestalImage = computed(() => {
   return null; // Fallback or default image, if any
 });
 
+// Computed property to determine the correct trophy image based on place
+const trophyImage = computed(() => {
+  if (props.place === 1) return trophyGold;
+  if (props.place === 2) return trophySilver;
+  if (props.place === 3) return trophyBronze;
+  return null; // No trophy for other places
+});
+
+const trophyImageWidth = computed(() => {
+  if (props.place === 1) return 'w-20';
+  if (props.place === 2) return 'w-14';
+  if (props.place === 3) return 'w-8';
+  return null; // No trophy for other places
+});
+
 // Compute the background image URL based on place
 const placeClass = computed(() => {
   if (props.place === 1) return 'pedestal-gold';
@@ -88,58 +106,63 @@ const placeClass = computed(() => {
 });
 </script>
 
-
 <template>
-
   <div v-bind="$attrs" class="root-element-class">
-  <!-- Pedestal -->
-  <div v-if="isPedestal" class="flex flex-col items-center">
 
-    <div class="flex items-center flex-col gap-3 font-semibold text-3xl">
-      {{ name }}
-      <div class="flex items-center gap-2"></div>
+    <!-- Pedestal -->
+    <div v-if="isPedestal" class="flex flex-col items-center">
+
+      <div class="flex items-center flex-col gap-3 font-semibold text-6xl">
+        {{ name }}
+        <div class="flex items-center gap-2"></div>
+      </div>
+      <!--    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">-->
+      <!--      <div>{{ scores[0].score }}</div>-->
+      <!--    </div>-->
+
+      <div class="w-full flex justify-center items-start text-3xl relative"
+           :class="['pedestal', placeClass, pedestalClass]">
+        <div class="flex flex-col gap-1 w-[98%] z-10">
+          <LeaderboardRowScore
+            v-for="(score, index) in scores"
+            :key="place + '-score-pedestal-' + (index + 1)"
+            :score="score.score"
+            :score_head="score.score_head"
+            :score_sub="score.score_sub"
+          ></LeaderboardRowScore>
+        </div>
+        <!-- Trophy images for bottom-left and bottom-right -->
+        <img v-if="trophyImage" :src="trophyImage" alt="Trophy" class="absolute bottom-2 left-2 h-auto z-10"
+             :class="trophyImageWidth">
+        <img v-if="trophyImage" :src="trophyImage" alt="Trophy" class="absolute bottom-2 right-2 h-auto z-10"
+             :class="trophyImageWidth">
+      </div>
     </div>
-<!--    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">-->
-<!--      <div>{{ scores[0].score }}</div>-->
-<!--    </div>-->
 
-    <div class="w-full flex justify-center items-start text-3xl" :class="['pedestal', placeClass, pedestalClass]">
-      <div class="fled flex-col gap-2 w-[98%]">
+    <!-- Row -->
+    <div
+      class="flex flex-col md:flex-row gap-x-4 gap-y-2 md:items-center border p-4 text-lg rounded-xl duration-300"
+      :class="placeStyle"
+      v-if="!isPedestal"
+    >
+
+      <div class="grid grid-cols-3 grid-rows-2 gap-2 w-full">
+        <div class="flex gap-4 items-center">
+          <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
+          <div class="flex items-center gap-3 font-semibold text-2xl">
+            {{ name }}
+            <div class="flex items-center gap-2 bg-red-300"></div>
+          </div>
+        </div>
         <LeaderboardRowScore
-          v-for="(score, index) in scores"
-          :key="place + '-score-pedestal-' + (index + 1)"
+          v-for="(score, index) in props.scores"
+          :key="place + '-score-' + index"
           :score="score.score"
           :score_head="score.score_head"
           :score_sub="score.score_sub"
         ></LeaderboardRowScore>
       </div>
     </div>
-  </div>
-
-  <!-- Row -->
-  <div
-    class="flex flex-col md:flex-row gap-x-4 gap-y-2 md:items-center border p-4 text-lg rounded-xl duration-300"
-    :class="placeStyle"
-    v-if="!isPedestal"
-  >
-
-    <div class="grid grid-cols-3 grid-rows-2 gap-2 w-full">
-      <div class="flex gap-4 items-center">
-        <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
-        <div class="flex items-center gap-3 font-semibold text-2xl">
-          {{ name }}
-          <div class="flex items-center gap-2 bg-red-300"></div>
-        </div>
-      </div>
-      <LeaderboardRowScore
-        v-for="(score, index) in props.scores"
-        :key="place + '-score-' + index"
-        :score="score.score"
-        :score_head="score.score_head"
-        :score_sub="score.score_sub"
-      ></LeaderboardRowScore>
-    </div>
-  </div>
   </div>
 </template>
 
@@ -152,7 +175,7 @@ const placeClass = computed(() => {
   //display: flex;
   //align-items: center;
   //justify-content: center;
-  z-index: 2; /* Ensures that the content appears above the ::before element */
+  z-index: 1; /* Ensures that the content appears above the ::before element */
 }
 
 /* The ::before pseudo-element for the background image */
@@ -166,8 +189,8 @@ const placeClass = computed(() => {
   //background-size: contain;
   //background-position: center;
   //background-repeat: no-repeat;
-  opacity: 0.4; /* Adjust the opacity of the background image here */
-  z-index: 1; /* Ensures the background is behind the content */
+  opacity: 0.15; /* Adjust the opacity of the background image here */
+  z-index: -10; /* Ensures the background is behind the content */
   pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
 }
 
@@ -179,11 +202,11 @@ const placeClass = computed(() => {
 
 .pedestal-silver::before {
   background-image: url('@/assets/img/tile-rock.png');
-  background-size: 48px 48px;
+  background-size: 32px 32px;
 }
 
 .pedestal-bronze::before {
   background-image: url('@/assets/img/tile-rock.png');
-  background-size: 60px 60px;
+  background-size: 32px 32px;
 }
 </style>
