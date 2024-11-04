@@ -23,7 +23,7 @@ const formatNumber = (value: string | number) => {
 </script>
 
 <template>
-  <div class="flex items-center justify-center">
+  <div class="flex items-center justify-center m-1">
     <!-- Head section, right-aligned to be close to the score -->
     <span v-if="score_head" class="text-lg w-7/12 text-right bg-slate-800 bg-opacity-60 pr-2 border-t-2 border-b-2 border-l-2 rounded-l-full text-nowrap overflow-hidden">
       {{ formatNumber(score_head) }}

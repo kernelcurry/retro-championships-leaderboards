@@ -53,9 +53,9 @@ const placeStyle = computed(() => {
 
 // Define place classes and fallback
 const pedestalClasses = [
-  "h-[464px] bg-gradient-to-b rounded-t-xl border-yellow-400 border-2 from-yellow-500/60",  // 1st place
-  "h-[400px] bg-gradient-to-b rounded-tl-xl border-gray-100 border-2 from-gray-400",      // 2nd place
-  "h-[336px] bg-gradient-to-b rounded-tr-xl border-orange-400 border-2 from-orange-400/40"   // 3rd place
+  "pb-[128px] bg-gradient-to-b rounded-t-xl border-yellow-400 border-2 from-yellow-500/60",  // 1st place
+  "pb-[64px] bg-gradient-to-b rounded-tl-xl border-gray-100 border-2 from-gray-400",      // 2nd place
+  "pb-[16px] bg-gradient-to-b rounded-tr-xl border-orange-400 border-2 from-orange-400/40"   // 3rd place
 ];
 const pedestalClassesFallback = "h-24 bg-gradient-to-b rounded-tl-xl border-slate-700 border-2 from-gray-600";
 
@@ -72,6 +72,29 @@ const pedestalClass = computed(() => {
 
   // Return style for 1st, 2nd, or 3rd place; otherwise, fallback
   return pedestalClasses[numericPlace - 1] || pedestalClassesFallback;
+});
+
+// Define place classes and fallback
+const pedestalColor = [
+  "#facc15",  // 1st place
+  "#f3f4f6",  // 2nd place
+  "#fb923c"   // 3rd place
+];
+const pedestalColorFallback = "#cbd0d6";
+
+// Computed property to determine the correct style based on place and usePlaceStyles
+const pedestalColorHex = computed(() => {
+  // If usePlaceStyles is false, always return the fallback
+  if (!props.usePlaceStyles) return pedestalColorFallback;
+
+  // Try to convert place to a number
+  const numericPlace = Number(props.place);
+
+  // Use fallback if place cannot be parsed into a valid number (isNaN)
+  if (isNaN(numericPlace)) return pedestalColorFallback;
+
+  // Return style for 1st, 2nd, or 3rd place; otherwise, fallback
+  return pedestalColor[numericPlace - 1] || pedestalColorFallback;
 });
 
 // Determine which image to use based on place
@@ -116,9 +139,9 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
     <!-- Pedestal -->
     <div v-if="isPedestal" class="flex flex-col items-center">
 
-      <div class="flex items-center flex-col gap-3 font-semibold text-6xl">
+      <div class="flex items-center flex-col gap-3 font-semibold text-6xl green pb-2"
+      :style="{ color: pedestalColorHex}">
         {{ name }}
-        <div class="flex items-center gap-2"></div>
       </div>
       <!--    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">-->
       <!--      <div>{{ scores[0].score }}</div>-->
@@ -126,7 +149,7 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
 
       <div class="w-full flex justify-center items-start text-3xl relative"
            :class="['pedestal', placeClass, pedestalClass]">
-        <div class="flex flex-col gap-1 w-[98%] z-10">
+        <div class="flex flex-col w-[98%] z-10">
           <LeaderboardRowScore
             v-for="(score, index) in scores"
             :key="place + '-score-pedestal-' + (index + 1)"
@@ -145,18 +168,19 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
 
     <!-- Row -->
     <div
-      class="flex flex-col md:flex-row gap-x-4 md:items-center border-slate-400 border-x-2 border-b-2 p-4 text-lg duration-300"
+      class="score-row flex flex-col md:flex-row md:items-center border-gray-400 border-x-2 border-b-2 text-lg duration-300"
       :class="placeStyle"
       v-if="!isPedestal"
     >
 
-      <div class="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 grid-rows-2 gap-x-4 w-full relative">
-        <div class="flex items-center row-span-3">
-          <div class="font-semibold text-center content-center bg-slate-800 bg-opacity-100 aspect-square p-2 border-2 rounded-xl text-6xl">#{{ place }}</div>
-          <div class="flex flex-grow items-center px-2 font-bold text-4xl border-y-2">
-            {{ name }}
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-2 w-full">
+        <div class="flex items-baseline row-span-3 pr-4">
+          <div class="font-semibold text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 aspect-square p-2 border-b-2 border-r-2 rounded-br-xl text-6xl ">#{{ place }}</div>
+          <div class="flex-grow items-center">
+            <span class="block px-2 w-full font-bold text-6xl">{{ name }}</span>
+            <span class="block px-2 w-full font-normal text-3xl border-t-2">{{ totalScore.score }}</span>
           </div>
-          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>
+<!--          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>-->
         </div>
         <LeaderboardRowScore
           v-for="(score, index) in gameScores"
@@ -210,6 +234,35 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
 }
 
 .pedestal-bronze::before {
+  background-image: url('@/assets/img/tile-rock.png');
+  background-size: 32px 32px;
+}
+
+.score-row {
+  position: relative;
+  overflow: hidden;
+  //width: 100%;
+  //height: 100%;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  z-index: 1; /* Ensures that the content appears above the ::before element */
+}
+
+/* The ::before pseudo-element for the background image */
+.score-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  //background-size: contain;
+  //background-position: center;
+  //background-repeat: no-repeat;
+  opacity: 0.1; /* Adjust the opacity of the background image here */
+  z-index: -10; /* Ensures the background is behind the content */
+  pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
   background-image: url('@/assets/img/tile-rock.png');
   background-size: 32px 32px;
 }
