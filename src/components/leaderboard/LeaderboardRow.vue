@@ -140,7 +140,7 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
     <div v-if="isPedestal" class="flex flex-col items-center">
 
       <div class="flex items-center flex-col gap-3 font-semibold text-6xl green pb-2"
-      :style="{ color: pedestalColorHex}">
+           :style="{ color: pedestalColorHex}">
         {{ name }}
       </div>
       <!--    <div class="flex text-slate-400 flex-col py-2 mb-1 items-center text-3xl">-->
@@ -173,21 +173,26 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
       v-if="!isPedestal"
     >
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 grid-rows-2 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
         <div class="flex items-baseline row-span-3 pr-4">
-          <div class="font-semibold text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 aspect-square p-2 border-b-2 border-r-2 rounded-br-xl text-6xl ">#{{ place }}</div>
-          <div class="flex-grow items-center">
-            <span class="block px-2 w-full font-bold text-6xl">{{ name }}</span>
-            <span class="block px-2 w-full font-normal text-3xl border-t-2">{{ totalScore.score }}</span>
+          <div class="aspect-square text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 border-b-2 border-r-2 rounded-br-xl">
+            <span class="p-2 h-full font-semibold text-5xl">#{{ place }}</span>
           </div>
-<!--          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>-->
+          <div class="flex-grow">
+            <span class="float-left px-2 pt-1 w-full font-bold text-3xl border-b-2">{{ name }}</span>
+            <span class="block px-2 w-full font-normal text-xl">{{ totalScore.score }}</span>
+          </div>
+          <!--          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>-->
         </div>
+        <div class="hidden xl:block"></div>
+        <div class="hidden lg:block"></div>
         <LeaderboardRowScore
           v-for="(score, index) in gameScores"
           :key="place + '-score-' + index"
           :score="score.score"
           :score_head="score.score_head"
           :score_sub="score.score_sub"
+          :class="['row-span-2']"
         ></LeaderboardRowScore>
       </div>
     </div>
