@@ -104,6 +104,10 @@ const placeClass = computed(() => {
   if (props.place === 3) return 'pedestal-bronze';
   return '';
 });
+
+const totalScore = computed(() => props.scores.slice(-1)[0]); // Gets the last score
+const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but the last score
+
 </script>
 
 <template>
@@ -141,21 +145,21 @@ const placeClass = computed(() => {
 
     <!-- Row -->
     <div
-      class="flex flex-col md:flex-row gap-x-4 gap-y-2 md:items-center border p-4 text-lg rounded-xl duration-300"
+      class="flex flex-col md:flex-row gap-x-4 md:items-center border-slate-400 border-x-2 border-b-2 p-4 text-lg duration-300"
       :class="placeStyle"
       v-if="!isPedestal"
     >
 
-      <div class="grid grid-cols-3 grid-rows-2 gap-2 w-full">
-        <div class="flex gap-4 items-center">
-          <div class="text-4xl w-10 text-slate-500">{{ place }}</div>
-          <div class="flex items-center gap-3 font-semibold text-2xl">
+      <div class="grid grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 grid-rows-2 gap-x-4 w-full relative">
+        <div class="flex items-center row-span-3">
+          <div class="font-semibold text-center content-center bg-slate-800 bg-opacity-100 aspect-square p-2 border-2 rounded-xl text-6xl">#{{ place }}</div>
+          <div class="flex flex-grow items-center px-2 font-bold text-4xl border-y-2">
             {{ name }}
-            <div class="flex items-center gap-2 bg-red-300"></div>
           </div>
+          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>
         </div>
         <LeaderboardRowScore
-          v-for="(score, index) in props.scores"
+          v-for="(score, index) in gameScores"
           :key="place + '-score-' + index"
           :score="score.score"
           :score_head="score.score_head"
@@ -189,7 +193,7 @@ const placeClass = computed(() => {
   //background-size: contain;
   //background-position: center;
   //background-repeat: no-repeat;
-  opacity: 0.15; /* Adjust the opacity of the background image here */
+  opacity: 0.1; /* Adjust the opacity of the background image here */
   z-index: -10; /* Ensures the background is behind the content */
   pointer-events: none; /* Prevents the pseudo-element from interfering with content interactions */
 }
