@@ -174,9 +174,11 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
       v-if="!isPedestal"
     >
       <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
-        <div class="flex items-baseline row-span-2 pr-4">
-          <div class="float-left aspect-square text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 border-b-2 border-r-2 rounded-br-xl">
-            <span class="p-2 h-full font-semibold text-5xl">#{{ place }}</span>
+        <div class="flex items-baseline row-span-2 pr-4 max-h-20">
+          <div class="float-left aspect-square w-20 h-20 max-w-20 max-h-20 text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 border-r-2"
+          :class="[(gameScores.length > 1 ? 'border-b-2 rounded-br-xl' : '')]">
+            <span class="h-full font-semibold overflow-hidden"
+                  :class="[(gameScores.length > 1 ? 'p-2 text-5xl' : 'p-1 text-3xl')]">#{{ place }}</span>
           </div>
           <div class="w-full float-left ">
             <span class="float-left px-2 w-full font-bold text-2xl border-b-2">{{ name }}</span>
