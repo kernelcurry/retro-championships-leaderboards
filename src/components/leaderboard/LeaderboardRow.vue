@@ -173,28 +173,32 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
       :class="placeStyle"
       v-if="!isPedestal"
     >
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full">
-        <div class="flex items-baseline row-span-2 pr-4 max-h-20">
-          <div class="float-left aspect-square w-20 h-20 max-w-20 max-h-20 text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 border-r-2"
-          :class="[(gameScores.length > 1 ? 'border-b-2 rounded-br-xl' : '')]">
-            <span class="h-full font-semibold overflow-hidden"
-                  :class="[(gameScores.length > 1 ? 'p-2 text-5xl' : 'p-1 text-3xl')]">#{{ place }}</span>
+      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full items-baseline">
+
+        <!-- Player Tag & Overview -->
+        <div class="flex row-span-2 pr-4 h-20 max-h-20">
+          <!-- Place -->
+          <div class="aspect-square h-full text-center content-center bg-slate-800 bg-opacity-90 border-gray-400 border-r-2"
+               :class="[(gameScores.length > 1 ? 'border-b-2 rounded-br-xl' : '')]">
+            <span class="font-semibold"
+                  :class="[(gameScores.length > 1 ? 'text-5xl' : 'text-3xl')]">#{{ place }}</span>
           </div>
-          <div class="w-full float-left ">
-            <span class="float-left px-2 w-full font-bold text-2xl border-b-2">{{ name }}</span>
-            <span class="block px-2 w-full font-normal text-xl">{{ totalScore.score }}</span>
+          <!-- Name & Total Score -->
+          <div class="flex-grow content-center">
+            <div class="w-full flex flex-wrap">
+              <span class="pl-2 w-full h-1/2 font-bold text-3xl border-gray-400 border-b-2 leading-none" >{{ name }}</span>
+              <span class="pl-2 w-full h-1/2 font-normal text-2xl">{{ totalScore.score }}</span>
+            </div>
           </div>
-          <!--          <div class="font-normal text-center content-center bg-slate-800 bg-opacity-100 p-2 border-2 rounded-xl text-4xl">{{ totalScore.score }}</div>-->
         </div>
-<!--        <div class="hidden xl:block"></div>-->
-<!--        <div class="hidden lg:block"></div>-->
+
         <LeaderboardRowScore
           v-for="(score, index) in gameScores"
           :key="place + '-score-' + index"
           :score="score.score"
           :score_head="score.score_head"
           :score_sub="score.score_sub"
-          :class="['row-span-2']"
+          :class="['row-span-2 px-1']"
         ></LeaderboardRowScore>
       </div>
     </div>
