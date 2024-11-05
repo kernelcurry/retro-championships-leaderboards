@@ -171,9 +171,9 @@ const gameScores = computed(() => props.scores.slice(0, -1)); // Gets all but th
     <div
       class="score-row flex flex-col md:flex-row md:items-center border-gray-400 border-x-2 border-b-2 text-lg duration-300"
       :class="placeStyle"
-      v-if="!isPedestal"
-    >
-      <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full items-baseline">
+      v-if="!isPedestal">
+      <div class="grid grid-cols-1 w-full items-baseline"
+           :class="[(gameScores.length > 1 ? 'lg:grid-cols-2 xl:grid-cols-3' : '')]">
 
         <!-- Player Tag & Overview -->
         <div class="flex row-span-2 pr-4 h-20 max-h-20">
