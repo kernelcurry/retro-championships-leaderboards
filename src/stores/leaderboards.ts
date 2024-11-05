@@ -1,5 +1,5 @@
 // src/stores/leaderboards.ts
-import { defineStore } from 'pinia';
+import {defineStore} from 'pinia';
 
 // Define the Score interface
 interface Score {
@@ -63,11 +63,13 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
     // Generate and populate test data for both qualifiers and finals
     generateTestData(numEntries: number) {
       // List of unique names (both real names and gamer tags)
-      const uniqueNames = [
-        "Alice", "Bobby", "Charlie", "David", "Eve", "Frank", "Grace", "Hank", "Ivy", "Jack",
-        "ShadowHunter", "GhostWolf", "NinjaKitty", "DragonSlayer", "PixelMaster", "Xx_DarkLord_xX",
-        "MysticMage", "CyberPunk", "ZeldaFan", "MarioBro", "PrincessPeach", "PugLife", "KnightRider",
-        "GalacticWanderer", "SkyWarrior"
+      const uniqueNames = ["ArcticFury", "BlazeFurySquad", "BlazePhoenix", "CelestialNomad", "CosmicScepter",
+        "CrimsonBlazeZ", "CrimsonRogueX", "CrypticFalcon99", "CrystalVortex", "CyberWolf21", "Dragonbreath",
+        "EchoStormX", "ElectricHusky21", "EmberDragon32", "EmberWolf88", "FrostbiteHunter", "FrostedNinja3",
+        "GalacticRogue", "InfernoBlade", "LunaWolf12", "MysticFuryX", "MysticNinja95", "NebulaVoyager", "NeonHavoc",
+        "NeoNinja", "NeonNova22", "NeonTalons12", "PixelGuardian", "PixelNinja", "QuantumNova22", "RogueFireball21",
+        "ShadowGaleX", "ShadowPine95", "SolarEcho", "SteelStorm89", "StellarProwler", "StormChaser413", "ThunderBlade",
+        "TurboTalon", "VenomousFalcon", "VoidSovereign", "VortexEcho7", "VortexNova", "XenoWolf32"
       ];
 
       // Shuffle names to ensure a random order each time
@@ -78,19 +80,39 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
       const generateScores = (useFinals: boolean): Score[] => {
         if (useFinals) {
           const scores: Score[] = [
-           // { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "Campus Challenge '91", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "Campus Challenge '92", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "Star Fox: Super Weekend '93", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "PowerFest '94", score_sub: Math.floor(Math.random() * 2000000) },
-            { score: Math.floor(Math.random() * 10), score_head: "DK Country Competition '95", score_sub: Math.floor(Math.random() * 2000000) }
+            // { score: Math.floor(Math.random() * 10), score_head: "1990 NWC", score_sub: Math.floor(Math.random() * 2000000) },
+            {
+              score: Math.floor(Math.random() * 10),
+              score_head: "Campus Challenge '91",
+              score_sub: Math.floor(Math.random() * 2000000)
+            },
+            {
+              score: Math.floor(Math.random() * 10),
+              score_head: "Campus Challenge '92",
+              score_sub: Math.floor(Math.random() * 2000000)
+            },
+            {
+              score: Math.floor(Math.random() * 10),
+              score_head: "Star Fox: Super Weekend '93",
+              score_sub: Math.floor(Math.random() * 2000000)
+            },
+            {
+              score: Math.floor(Math.random() * 10),
+              score_head: "PowerFest '94",
+              score_sub: Math.floor(Math.random() * 2000000)
+            },
+            {
+              score: Math.floor(Math.random() * 10),
+              score_head: "DK Country Competition '95",
+              score_sub: Math.floor(Math.random() * 2000000)
+            }
           ];
           const totalScore = scores.reduce((total, game) => total + (Number(game.score) || 0), 0);
-          scores.push({ score: totalScore });
+          scores.push({score: totalScore});
           return scores;
         } else {
           const scoreValue = Math.floor(Math.random() * 2000000);
-          return [{ score: scoreValue }];
+          return [{score: scoreValue}];
         }
       };
 
@@ -114,9 +136,9 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         leaderboardData.forEach((entry, index) => {
           const place = index + 1;
           if (useFinals) {
-            this.leaderboards.finals.push({ place, name: entry.name, scores: entry.scores });
+            this.leaderboards.finals.push({place, name: entry.name, scores: entry.scores});
           } else {
-            this.leaderboards.qualifiers.push({ place, name: entry.name, scores: entry.scores });
+            this.leaderboards.qualifiers.push({place, name: entry.name, scores: entry.scores});
           }
         });
       };
@@ -192,7 +214,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
     },
 
     // Fetch both qualifiers and finals, defaulting to not fetching anything unless configured
-    async fetchScoresFromAPI({ fetchQualifiers = false, fetchFinals = false } = {}) {
+    async fetchScoresFromAPI({fetchQualifiers = false, fetchFinals = false} = {}) {
       const fetchPromises = [];
       if (fetchQualifiers) fetchPromises.push(this.fetchQualifiersFromAPI());
       if (fetchFinals) fetchPromises.push(this.fetchFinalsFromAPI());
@@ -203,7 +225,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
     },
 
     // Start fetching data every X seconds with options to fetch only qualifiers, finals, or both
-    startFetchingScores(intervalSeconds: number = 30, options = { fetchQualifiers: false, fetchFinals: false }) {
+    startFetchingScores(intervalSeconds: number = 30, options = {fetchQualifiers: false, fetchFinals: false}) {
       if (this.fetchInterval) {
         clearInterval(this.fetchInterval);  // Clear any existing intervals
       }
