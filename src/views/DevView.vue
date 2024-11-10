@@ -30,7 +30,7 @@ const resetLeaderboard = () => {
 };
 
 
-let leaderboardData = leaderboardsStore.generateTestData(44);
+let leaderboardData = leaderboardsStore.generateTestData(32);
 
 // Computed properties to split leaderboard data for two columns
 const leftColumnRows = computed(() => leaderboardsStore.allQualifiers.filter((_, index) => index < 8));
@@ -65,7 +65,7 @@ const Top17Plus = computed(() => leaderboardsStore.allQualifiers.slice(16));
 
 <template>
   <div class="max-w-screen-2xl mx-auto">
-    <div class="p-4 bg-gray-100/20 bg-gradient-to-b from-gray-500/60 border-gray-100 border-2 rounded-xl">
+    <div class="m-4">
       <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
         <div class="col-span-1 md:col-span-2 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
           <span class="inline-block w-full text-3xl font-bold">Top 8 Qualify for Finals!</span>
@@ -83,34 +83,31 @@ const Top17Plus = computed(() => leaderboardsStore.allQualifiers.slice(16));
       </div>
     </div>
 
-    <div
-      class="grid grid-flow-row m-4 grid-rows-none md:grid-cols-2 lg:grid-cols-3 xl:grid-flow-col xl:grid-cols-none xl:grid-rows-8 2xl:grid-rows-8">
-      <LeaderboardRow
-        v-for="(item, index) in Top8"
-        :key="'qual-row-' + item.place"
-        :class="['']"
-        :name="item.name"
-        :place="item.place"
-        :scores="item.scores"
-        :use-place-styles="true"
-      />
-      <LeaderboardRow
-        v-for="(item, index) in Top9to16"
-        :key="'qual-row-' + item.place"
-        :name="item.name"
-        :place="item.place"
-        :scores="item.scores"
-        :use-place-styles="true"
-      />
-      <LeaderboardRow
-        v-for="(item, index) in Top17Plus"
-        :key="'qual-row-' + item.place"
-        :name="item.name"
-        :place="item.place"
-        :scores="item.scores"
-        :use-place-styles="true"
-      />
+    <div class="m-4">
+      <div class="grid grid-flow-row grid-rows-none md:grid-cols-2 lg:grid-cols-3 xl:grid-flow-col xl:grid-cols-3 xl:grid-rows-9 2xl:grid-rows-9">
+        <div class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
+          <span class="inline-block w-full text-3xl font-bold">Top 9 - 32</span>
+          <span class="inline-block text-xl font-normal">Some inspirational quote here... YAY we Did it!</span>
+        </div>
+        <LeaderboardRow
+          v-for="(item, index) in Top9to16"
+          :key="'qual-row-' + item.place"
+          :name="item.name"
+          :place="item.place"
+          :scores="item.scores"
+          :use-place-styles="true"
+        />
+        <LeaderboardRow
+          v-for="(item, index) in Top17Plus"
+          :key="'qual-row-' + item.place"
+          :name="item.name"
+          :place="item.place"
+          :scores="item.scores"
+          :use-place-styles="true"
+        />
+      </div>
     </div>
+
   </div>
 </template>
 
