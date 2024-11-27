@@ -201,7 +201,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Fetch and process qualifiers from Google Sheets API
     async fetchQualifiersFromAPI() {
-      const range = 'output!A2:E';  // Define the range for qualifiers
+      const range = 'output!A2:B';  // Define the range for qualifiers
       const rows = await this.fetchFromGoogleSheets(QUALIFIERS_SPREADSHEET_ID, range);  // Fetch data from the qualifiers sheet
       this._processQualifiersResponse(rows);  // Process the response
     },
