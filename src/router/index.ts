@@ -4,6 +4,7 @@ import BasicLayout from "@/layouts/BasicLayout.vue";
 import DevView from "@/views/DevView.vue";
 import FinalsView from "@/views/FinalsView.vue";
 import BlankLayout from "@/layouts/BlankLayout.vue";
+import QualifiersView from "@/views/QualifiersView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -34,6 +35,12 @@ const router = createRouter({
       name: 'finals',
       meta: {layout: BlankLayout},
       component: FinalsView
+    },
+    {
+      path: '/qualifiers',
+      name: 'qualifiers',
+      meta: {layout: BlankLayout},
+      component: QualifiersView
     },
   ]
 })
