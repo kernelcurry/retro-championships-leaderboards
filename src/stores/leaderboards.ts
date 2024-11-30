@@ -163,9 +163,9 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         name: item[1],   // Assuming column B has the name
         scores: [
           {
-            score: item[2],      // Assuming column C has the score
-            score_head: item[3], // Assuming column D has score_head
-            score_sub: item[4]   // Assuming column E has score_sub
+            score: new Intl.NumberFormat().format(Number(item[2])), // Assuming column C has the score
+            score_head: "", // Assuming column D has score_head
+            score_sub: ""   // Assuming column E has score_sub
           }
         ]
       }));
@@ -201,7 +201,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Fetch and process qualifiers from Google Sheets API
     async fetchQualifiersFromAPI() {
-      const range = 'output!A2:B';  // Define the range for qualifiers
+      const range = "top32!A2:C33";  // Define the range for qualifiers
       const rows = await this.fetchFromGoogleSheets(QUALIFIERS_SPREADSHEET_ID, range);  // Fetch data from the qualifiers sheet
       this._processQualifiersResponse(rows);  // Process the response
     },
