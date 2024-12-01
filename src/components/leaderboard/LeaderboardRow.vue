@@ -99,32 +99,32 @@ const pedestalColorHex = computed(() => {
 
 // Determine which image to use based on place
 const pedestalImage = computed(() => {
-  if (props.place === 1) return pedestalGold;
-  if (props.place === 2) return pedestalSilver;
-  if (props.place === 3) return pedestalBronze;
+  if (Number(props.place) === 1) return pedestalGold;
+  if (Number(props.place) === 2) return pedestalSilver;
+  if (Number(props.place) === 3) return pedestalBronze;
   return null; // Fallback or default image, if any
 });
 
 // Computed property to determine the correct trophy image based on place
 const trophyImage = computed(() => {
-  if (props.place === 1) return trophyGold;
-  if (props.place === 2) return trophySilver;
-  if (props.place === 3) return trophyBronze;
+  if (Number(props.place === 1)) return trophyGold;
+  if (Number(props.place === 2)) return trophySilver;
+  if (Number(props.place === 3)) return trophyBronze;
   return null; // No trophy for other places
 });
 
 const trophyImageWidth = computed(() => {
-  if (props.place === 1) return 'w-20';
-  if (props.place === 2) return 'w-14';
-  if (props.place === 3) return 'w-8';
+  if (Number(props.place === 1)) return 'w-20';
+  if (Number(props.place === 2)) return 'w-14';
+  if (Number(props.place === 3)) return 'w-8';
   return null; // No trophy for other places
 });
 
 // Compute the background image URL based on place
 const placeClass = computed(() => {
-  if (props.place === 1) return 'pedestal-gold';
-  if (props.place === 2) return 'pedestal-silver';
-  if (props.place === 3) return 'pedestal-bronze';
+  if (Number(props.place === 1)) return 'pedestal-gold';
+  if (Number(props.place === 2)) return 'pedestal-silver';
+  if (Number(props.place === 3)) return 'pedestal-bronze';
   return '';
 });
 
