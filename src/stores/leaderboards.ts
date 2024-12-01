@@ -173,39 +173,41 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
         }));
     },
 
-
     // Private method to process the finals API response and update the state
     _processFinalsResponse(data: any) {
       this.leaderboards.finals = data
         .sort((a: any, b: any) => Number(a[0]) - Number(b[0])) // Sort by the 'place' column (item[0])
         .map((item: any) => ({
-          place: item[0],  // Assuming column A has the place
+          place: Number(item[0]),  // Assuming column A has the place
           name: item[1],   // Assuming column B has the name
           scores: [
             {
-              score: item[4],      // Assuming column C has the score
-              score_head: item[2], // Assuming column D has score_head
-              score_sub: item[3]   // Assuming column E has score_sub
+              score: item[4],
+              score_head: item[2],
+              score_sub: item[3]
             },
             {
-              score: item[7],      // Assuming column C has the score
-              score_head: item[5], // Assuming column D has score_head
-              score_sub: item[6]   // Assuming column E has score_sub
+              score: item[7],
+              score_head: item[5],
+              score_sub: item[6]
             },
             {
-              score: item[10],      // Assuming column C has the score
-              score_head: item[8], // Assuming column D has score_head
-              score_sub: item[9]   // Assuming column E has score_sub
+              score: item[10],
+              score_head: item[8],
+              score_sub: item[9]
             },
             {
-              score: item[13],      // Assuming column C has the score
-              score_head: item[11], // Assuming column D has score_head
-              score_sub: item[12]   // Assuming column E has score_sub
+              score: item[13],
+              score_head: item[11],
+              score_sub: item[12]
             },
             {
-              score: item[16],      // Assuming column C has the score
-              score_head: item[14], // Assuming column D has score_head
-              score_sub: item[15]   // Assuming column E has score_sub
+              score: item[16],
+              score_head: item[14],
+              score_sub: item[15]
+            },
+            {
+              score: item[17],
             }
           ]
         }));

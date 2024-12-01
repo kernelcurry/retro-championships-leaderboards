@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
+import {computed} from 'vue';
 import LeaderboardRow from "@/components/leaderboard/LeaderboardRow.vue";
 import {useLeaderboardsStore} from '@/stores/leaderboards';
 import LeaderboardRowScore from "@/components/leaderboard/LeaderboardRowScore.vue";
@@ -30,8 +30,8 @@ const resetLeaderboard = () => {
 };
 
 // Test data generation
-let leaderboardData = leaderboardsStore.generateTestData(8);
-// let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchQualifiers: false, fetchFinals: true})
+// let leaderboardData = leaderboardsStore.generateTestData(8);
+let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchQualifiers: false, fetchFinals: true})
 
 
 // Computed properties for sliced data
