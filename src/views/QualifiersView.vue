@@ -30,7 +30,7 @@ const resetLeaderboard = () => {
 };
 
 
-let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchQualifiers: true})
+let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchQualifiers: true, fetchFinals: false})
 
 // Computed properties to split leaderboard data for two columns
 const leftColumnRows = computed(() => leaderboardsStore.allQualifiers.filter((_, index) => index < 8));
