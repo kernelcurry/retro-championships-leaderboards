@@ -107,24 +107,24 @@ const pedestalImage = computed(() => {
 
 // Computed property to determine the correct trophy image based on place
 const trophyImage = computed(() => {
-  if (Number(props.place === 1)) return trophyGold;
-  if (Number(props.place === 2)) return trophySilver;
-  if (Number(props.place === 3)) return trophyBronze;
+  if (Number(props.place) === 1) return trophyGold;
+  if (Number(props.place) === 2) return trophySilver;
+  if (Number(props.place) === 3) return trophyBronze;
   return null; // No trophy for other places
 });
 
 const trophyImageWidth = computed(() => {
-  if (Number(props.place === 1)) return 'w-20';
-  if (Number(props.place === 2)) return 'w-14';
-  if (Number(props.place === 3)) return 'w-8';
+  if (Number(props.place) === 1) return 'w-20';
+  if (Number(props.place) === 2) return 'w-14';
+  if (Number(props.place) === 3) return 'w-8';
   return null; // No trophy for other places
 });
 
 // Compute the background image URL based on place
 const placeClass = computed(() => {
-  if (Number(props.place === 1)) return 'pedestal-gold';
-  if (Number(props.place === 2)) return 'pedestal-silver';
-  if (Number(props.place === 3)) return 'pedestal-bronze';
+  if (Number(props.place) === 1) return 'pedestal-gold';
+  if (Number(props.place) === 2) return 'pedestal-silver';
+  if (Number(props.place) === 3) return 'pedestal-bronze';
   return '';
 });
 
