@@ -30,7 +30,7 @@ const resetLeaderboard = () => {
 };
 
 
-let leaderboardData = leaderboardsStore.generateTestData(32);
+let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchQualifiers: true})
 
 // Computed properties to split leaderboard data for two columns
 const leftColumnRows = computed(() => leaderboardsStore.allQualifiers.filter((_, index) => index < 8));
@@ -65,51 +65,51 @@ const Top17Plus = computed(() => leaderboardsStore.allQualifiers.slice(16));
 
 <template>
   <div class="score-container">
-  <div class="max-w-screen-2xl mx-auto">
-    <div class="m-4">
-      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
-        <div class="col-span-1 md:col-span-2 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
-          <span class="inline-block w-full text-3xl font-bold">Top 8 Qualify for Finals!</span>
-          <span class="inline-block text-xl font-normal">(Sunday @ 12:00)</span>
+    <div class="max-w-screen-2xl mx-auto">
+      <div class="m-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
+          <div class="col-span-1 md:col-span-2 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
+            <span class="inline-block w-full text-3xl font-bold">Top 8 Qualify for Finals!</span>
+            <span class="inline-block text-xl font-normal">(Sunday @ 12:00)</span>
+          </div>
+          <LeaderboardRow
+            v-for="(item, index) in Top8"
+            :key="'qual-row-' + item.place"
+            :class="['border-r-2', 'border-l-2', 'border-b-2', 'border-slate-400']"
+            :name="item.name"
+            :place="item.place"
+            :scores="item.scores"
+            :use-place-styles="false"
+          />
         </div>
-        <LeaderboardRow
-          v-for="(item, index) in Top8"
-          :key="'qual-row-' + item.place"
-          :class="['border-r-2', 'border-l-2', 'border-b-2', 'border-slate-400']"
-          :name="item.name"
-          :place="item.place"
-          :scores="item.scores"
-          :use-place-styles="false"
-        />
       </div>
-    </div>
 
-    <div class="m-4">
-      <div class="grid grid-flow-row grid-rows-none md:grid-cols-2 lg:grid-cols-3 xl:grid-flow-col xl:grid-cols-3 xl:grid-rows-9 2xl:grid-rows-9">
-        <div class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
-          <span class="inline-block w-full text-3xl font-bold">Top 9 - 32</span>
-          <span class="inline-block text-xl font-normal">Some inspirational quote here... YAY we Did it!</span>
+      <div class="m-4">
+        <div class="grid grid-flow-row grid-rows-none md:grid-cols-2 lg:grid-cols-3 xl:grid-flow-col xl:grid-cols-3 xl:grid-rows-9 2xl:grid-rows-9">
+          <div class="col-span-1 md:col-span-2 lg:col-span-3 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
+            <span class="inline-block w-full text-3xl font-bold">Top 9 - 32</span>
+            <span class="inline-block text-xl font-normal">Some inspirational quote here... YAY we Did it!</span>
+          </div>
+          <LeaderboardRow
+            v-for="(item, index) in Top9to16"
+            :key="'qual-row-' + item.place"
+            :name="item.name"
+            :place="item.place"
+            :scores="item.scores"
+            :use-place-styles="true"
+          />
+          <LeaderboardRow
+            v-for="(item, index) in Top17Plus"
+            :key="'qual-row-' + item.place"
+            :name="item.name"
+            :place="item.place"
+            :scores="item.scores"
+            :use-place-styles="true"
+          />
         </div>
-        <LeaderboardRow
-          v-for="(item, index) in Top9to16"
-          :key="'qual-row-' + item.place"
-          :name="item.name"
-          :place="item.place"
-          :scores="item.scores"
-          :use-place-styles="true"
-        />
-        <LeaderboardRow
-          v-for="(item, index) in Top17Plus"
-          :key="'qual-row-' + item.place"
-          :name="item.name"
-          :place="item.place"
-          :scores="item.scores"
-          :use-place-styles="true"
-        />
       </div>
-    </div>
 
-  </div>
+    </div>
   </div>
 </template>
 

@@ -158,18 +158,21 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Private method to process the qualifiers API response and update the state
     _processQualifiersResponse(data: any) {
-      this.leaderboards.qualifiers = data.map((item: any) => ({
-        place: item[0],  // Assuming column A has the place
-        name: item[1],   // Assuming column B has the name
-        scores: [
-          {
-            score: new Intl.NumberFormat().format(Number(item[2])), // Assuming column C has the score
-            score_head: "", // Assuming column D has score_head
-            score_sub: ""   // Assuming column E has score_sub
-          }
-        ]
-      }));
+      this.leaderboards.qualifiers = data
+        .sort((a: any, b: any) => Number(a[0]) - Number(b[0])) // Sort by the 'place' column (item[0])
+        .map((item: any) => ({
+          place: item[0],  // Assuming column A has the place
+          name: item[1],   // Assuming column B has the name
+          scores: [
+            {
+              score: new Intl.NumberFormat().format(Number(item[2])), // Convert and format the score inline
+              score_head: "", // Assuming column D has score_head
+              score_sub: ""   // Assuming column E has score_sub
+            }
+          ]
+        }));
     },
+
 
     // Private method to process the finals API response and update the state
     _processFinalsResponse(data: any) {
