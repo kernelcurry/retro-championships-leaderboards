@@ -30,7 +30,7 @@ const resetLeaderboard = () => {
 };
 
 // Test data generation
-let leaderboardData = leaderboardsStore.generateTestData(8);
+let leaderboardData = leaderboardsStore.startFetchingScores(30, {fetchFinals: true})
 
 // Computed properties for sliced data
 const pedestalLeft = computed(() => leaderboardsStore.allFinals.slice(1, 2));

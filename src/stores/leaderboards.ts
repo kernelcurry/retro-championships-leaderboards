@@ -176,17 +176,39 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Private method to process the finals API response and update the state
     _processFinalsResponse(data: any) {
-      this.leaderboards.finals = data.map((item: any) => ({
-        place: item[0],  // Assuming column A has the place
-        name: item[1],   // Assuming column B has the name
-        scores: [
-          {
-            score: item[2],      // Assuming column C has the score
-            score_head: item[3], // Assuming column D has score_head
-            score_sub: item[4]   // Assuming column E has score_sub
-          }
-        ]
-      }));
+      this.leaderboards.finals = data
+        .sort((a: any, b: any) => Number(a[0]) - Number(b[0])) // Sort by the 'place' column (item[0])
+        .map((item: any) => ({
+          place: item[0],  // Assuming column A has the place
+          name: item[1],   // Assuming column B has the name
+          scores: [
+            {
+              score: item[4],      // Assuming column C has the score
+              score_head: item[2], // Assuming column D has score_head
+              score_sub: item[3]   // Assuming column E has score_sub
+            },
+            {
+              score: item[7],      // Assuming column C has the score
+              score_head: item[5], // Assuming column D has score_head
+              score_sub: item[6]   // Assuming column E has score_sub
+            },
+            {
+              score: item[10],      // Assuming column C has the score
+              score_head: item[8], // Assuming column D has score_head
+              score_sub: item[9]   // Assuming column E has score_sub
+            },
+            {
+              score: item[13],      // Assuming column C has the score
+              score_head: item[11], // Assuming column D has score_head
+              score_sub: item[12]   // Assuming column E has score_sub
+            },
+            {
+              score: item[16],      // Assuming column C has the score
+              score_head: item[14], // Assuming column D has score_head
+              score_sub: item[15]   // Assuming column E has score_sub
+            }
+          ]
+        }));
     },
 
     // Shared method to fetch data from Google Sheets API using the provided Spreadsheet ID and range
@@ -211,7 +233,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
 
     // Fetch and process finals from Google Sheets API
     async fetchFinalsFromAPI() {
-      const range = 'output!A2:E';  // Define the range for finals
+      const range = 'Data!A2:R9';  // Define the range for finals
       const rows = await this.fetchFromGoogleSheets(FINALS_SPREADSHEET_ID, range);  // Fetch data from the finals sheet
       this._processFinalsResponse(rows);  // Process the response
     },
