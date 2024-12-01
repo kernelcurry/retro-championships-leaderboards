@@ -161,7 +161,7 @@ export const useLeaderboardsStore = defineStore('Leaderboards', {
       this.leaderboards.qualifiers = data
         .sort((a: any, b: any) => Number(a[0]) - Number(b[0])) // Sort by the 'place' column (item[0])
         .map((item: any) => ({
-          place: item[0],  // Assuming column A has the place
+          place: Number(item[0]),  // Assuming column A has the place
           name: item[1],   // Assuming column B has the name
           scores: [
             {
