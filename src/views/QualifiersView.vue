@@ -70,10 +70,19 @@ const Top17Plus = computed(() => leaderboardsStore.allQualifiers.slice(16));
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4">
           <div class="col-span-1 md:col-span-2 xl:col-span-4 w-full text-center bg-slate-900 border-2 border-slate-400 rounded-t-xl py-2">
             <span class="inline-block w-full text-3xl font-bold">Top 8 Qualify for Finals!</span>
-            <span class="inline-block text-xl font-normal">(Sunday @ 12:00)</span>
+            <span class="inline-block text-xl font-normal">(Join us Sunday @ 12:00)</span>
           </div>
           <LeaderboardRow
-            v-for="(item, index) in Top8"
+            v-for="(item, index) in Top1"
+            :key="'qual-row-' + item.place"
+            :class="['border-r-2', 'border-l-2', 'border-b-2', 'border-slate-400']"
+            :name="item.name"
+            :place="item.place"
+            :scores="item.scores"
+            :use-place-styles="true"
+          />
+          <LeaderboardRow
+            v-for="(item, index) in Top2to8"
             :key="'qual-row-' + item.place"
             :class="['border-r-2', 'border-l-2', 'border-b-2', 'border-slate-400']"
             :name="item.name"
