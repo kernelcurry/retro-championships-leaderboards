@@ -1,11 +1,86 @@
 <script lang="ts" setup>
-import TheWelcome from '../components/TheWelcome.vue'
 </script>
 
 <template>
   <main class="my-12">
-    <!--    <TheWelcome />-->
     <ol class="relative border-s border-gray-200 dark:border-gray-700">
+
+      <!-- 2026 -->
+      <li class="mb-10 ms-4">
+        <div
+          class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">March 13-15, 2026</time>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">2026 Game On Expo</h3>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">The 2026 event returned to the classic
+          gauntlet format with StarFox Super Weekend as the qualifier. The finals featured five competition carts: the
+          1990 Nintendo World Championships, 1991 and 1992 Campus Challenges, Powerfest '94, and the Donkey Kong Country
+          Competition. Eight finalists earned points across each round, with the champion taking home $500 and the 2026
+          championship belt. A bonus Marble Madness tournament added extra excitement to the weekend.</p>
+        <a
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          href="/2026/qualifiers.html">
+          Qualifiers
+          <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </a>
+        <a
+          class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          href="/2026/finals.html">
+          Finals
+          <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </a>
+        <a
+          class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          href="/2026/marble-madness.html">
+          Marble Madness
+          <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </a>
+      </li>
+
+      <!-- 2025 -->
+      <li class="mb-10 ms-4">
+        <div
+          class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+        <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">April 4-6, 2025</time>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">2025 Game On Expo</h3>
+        <p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">Celebrating the 10th anniversary of
+          both Game On Expo and the Retro Championships, the 2025 event featured the 1990 Nintendo World Championships
+          cart as the qualifier — a 6-minute, 21-second marathon through Super Mario Bros., Rad Racer, and Tetris. With
+          six qualifying stations (a 50% increase over prior years), the top 8 advanced to Sunday's Championship gauntlet
+          featuring the 1991 and 1992 Campus Challenges, StarFox Super Weekend, Powerfest '94, and the Donkey Kong
+          Country Competition.</p>
+        <a
+          class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          href="/2025/qualifiers.html">
+          Qualifiers
+          <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </a>
+        <a
+          class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          href="/2025/finals.html">
+          Finals
+          <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
+               xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 5h12m0 0L9 1m4 4L9 9" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                  stroke-width="2"/>
+          </svg>
+        </a>
+      </li>
 
       <!-- 2024 -->
       <li class="mb-10 ms-4">
@@ -22,7 +97,7 @@ import TheWelcome from '../components/TheWelcome.vue'
           championship belt and bragging rights for the year.</p>
         <a
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2024/qualifiers.html">
+          href="/2024/qualifiers.html">
           Qualifiers
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -32,7 +107,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2024/finals.html">
+          href="/2024/finals.html">
           Finals
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -56,7 +131,7 @@ import TheWelcome from '../components/TheWelcome.vue'
           at a range of different games in order to take home the belt.</p>
         <a
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2023/qualifiers.html">
+          href="/2023/qualifiers.html">
           Qualifiers
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +141,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2023/finals.html">
+          href="/2023/finals.html">
           Finals
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +165,7 @@ import TheWelcome from '../components/TheWelcome.vue'
           claim victory.</p>
         <a
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2022/qualifiers.html">
+          href="/2022/qualifiers.html">
           Qualifiers
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +175,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2022/finals.html">
+          href="/2022/finals.html">
           Finals
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -125,7 +200,7 @@ import TheWelcome from '../components/TheWelcome.vue'
           the last moment.</p>
         <a
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2019/qualifiers.html">
+          href="/2019/qualifiers.html">
           Qualifiers
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -135,7 +210,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2019/finals-retro.html">
+          href="/2019/finals-retro.html">
           Finals
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -145,7 +220,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2019/finals-pf94.html">
+          href="/2019/finals-pf94.html">
           PowerFest 94
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -170,7 +245,7 @@ import TheWelcome from '../components/TheWelcome.vue'
           finishing the first level of Strider.</p>
         <a
           class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2018/qualifiers.html">
+          href="/2018/qualifiers.html">
           Qualifiers
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
@@ -180,7 +255,7 @@ import TheWelcome from '../components/TheWelcome.vue'
         </a>
         <a
           class="ml-4 inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700"
-          href="https://retrochampionships.com/2018/finals.html">
+          href="/2018/finals.html">
           Finals
           <svg aria-hidden="true" class="w-3 h-3 ms-2 rtl:rotate-180" fill="none" viewBox="0 0 14 10"
                xmlns="http://www.w3.org/2000/svg">
