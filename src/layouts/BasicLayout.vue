@@ -16,7 +16,7 @@ import {RouterLink, RouterView} from 'vue-router'
 
         <!--Content: Title-->
         <div class="basis-full text-center  pt-4">
-          <h1 class="text-3xl  font-bold upper">Retro Championships Archive</h1>
+          <h1 class="text-3xl  font-bold upper">Retro Championships Archives</h1>
         </div>
 
         <!--Nav: General-->
